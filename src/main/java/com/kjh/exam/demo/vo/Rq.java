@@ -44,6 +44,7 @@ public class Rq {
 	}
 
 	public void printHistoryBackJs(String msg) {
+		resp.setContentType("text/html; charset=UTF-8");
 		print(Ut.jsHistoryBack(msg));
 	}
 
@@ -69,16 +70,19 @@ public class Rq {
 	}
 
 	public String historyBackJsOnView(String msg) {
+
 		req.setAttribute("msg", msg);
 		req.setAttribute("historyBack", true);
 		return "common/js";
 	}
 
 	public String jsHistoryBack(String msg) {
+
 		return Ut.jsHistoryBack(msg);
 	}
 
 	public String jsReplace(String msg, String uri) {
+
 		return Ut.jsReplace(msg, uri);
 	}
 
