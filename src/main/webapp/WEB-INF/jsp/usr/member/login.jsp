@@ -20,14 +20,15 @@
           <tr>
             <th>로그인비밀번호</th>
             <td>
-            <input name="loginPw" type="password" placeholder="로그인비밀번호" class=" w-96 input input-bordered w-full max-w-xs" />
+              <input name="loginPw" type="password" placeholder="로그인비밀번호"
+                class=" w-96 input input-bordered w-full max-w-xs" />
             </td>
           </tr>
           <tr>
             <th>로그인</th>
             <td>
-              <button type="submit" class="btn btn-primary">로그인</button>
-              <button type="button" class="btn btn-outline btn-success" onclick="history.back();">뒤로가기</button>
+              <button type="submit" class="btn btn-outline">로그인</button>
+              <button type="button" class="btn btn-outline" onclick="history.back();">뒤로가기</button>
             </td>
           </tr>
         </tbody>
