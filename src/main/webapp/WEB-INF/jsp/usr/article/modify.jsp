@@ -14,7 +14,9 @@
         <tbody>
           <tr>
             <th>번호</th>
-            <td>${article.id}</td>
+            <td>
+              <div>${article.id}</div>
+            </td>
           </tr>
           <tr>
             <th>작성날짜</th>
@@ -38,22 +40,20 @@
           <tr>
             <th>내용</th>
             <td>
-              <textarea class="w-full textarea textarea-bordered" name="body" rows="10">${article.body}</textarea>
+              <textarea class="w-full textarea textarea-bordered" name="body" rows="10" placeholder="내용">${article.body}</textarea>
             </td>
           </tr>
           <tr>
             <th>수정</th>
             <td>
-              <input type="button" class="btn btn-outline" value="수정" />
+              <input type="submit" class="btn btn-outline" value="수정" />
               <button type="button" class="btn btn-outline" onclick="history.back();">뒤로가기</button>
             </td>
           </tr>
         </tbody>
       </table>
 
-
       <div class="btns">
-        <button class="btn btn-outline" type="button" onclick="history.back();">뒤로가기</button>
         <a class="btn btn-outline" href="../article/modify?id=${article.id}">게시물 수정</a>
         <c:if test="${article.extra__actorCanDelete}">
           <a class="btn btn-outline" onclick="if ( confirm('정말 삭제하시겠습니까?') == false) return false;"
