@@ -31,10 +31,6 @@ updateDate = NOW(),
 title = '제목3',
 `body` = '내용3';
 
-SELECT * FROM article;
-
-SELECT LAST_INSERT_ID();
-
 # 회원 테이블 생성
 CREATE TABLE `member` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -83,8 +79,6 @@ nickname = "사용자2",
 cellphoneNo = "01011112222",
 email = "test2@gmail.com";
 
-SELECT * FROM `member`;
-
 # 게시물 테이블에 회원정보 추가
 ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER `updateDate`;
 
@@ -92,9 +86,6 @@ ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER `updateD
 UPDATE article
 SET memberId = 2
 WHERE memberId = 0;
-
-SELECT * FROM article;
-SELECT * FROM `member`;
 
 # 회원 테이블 생성
 CREATE TABLE board (
@@ -123,8 +114,6 @@ updateDate = NOW(),
 # 게시판 테이블에 boardId 컬럼 추가
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER memberId;
 
-SELECT * FROM article;
-
 # 1, 2번 게시물을 공지사항 게시물로 지정
 UPDATE article
 SET boardId = 1
@@ -135,5 +124,14 @@ UPDATE article
 SET boardId = 2
 WHERE id IN(3);
 
-SELECT * FROM board WHERE id = 1;
-SELECT * FROM board WHERE id = 2;
+/*
+# 게시물 개수 늘리기
+insert into article
+(
+	regDate, updateDate, memberId, boardId, title, `body`
+)
+select Now(), now(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, concat('제목_', rand()), CONCAT('제목_', RAND())
+from article;
+*/
+
+SELECT COUNT(*) FROM article;
