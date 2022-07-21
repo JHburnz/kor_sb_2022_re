@@ -26,7 +26,7 @@ public class ArticleService {
 
 	public List<Article> getForPrintArticles(int actorId, int boardId, int itemsCountInAPage, int page) {
 		/*
-		 * SELECT * FROM article WHERE boardID = 1 ORDER BY id DESC LIMIT 20, 10
+		 * SELECT * FROM article WHERE boardID = 1 ORDER BY id DESC LIMIT 0, 10
 		 */
 		int limitStart = (page - 1) * itemsCountInAPage;
 		int limitTake = itemsCountInAPage;
