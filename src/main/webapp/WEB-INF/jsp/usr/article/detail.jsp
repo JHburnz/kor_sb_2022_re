@@ -28,6 +28,10 @@
             <td>${article.extra__writerName}</td>
           </tr>
           <tr>
+            <th>조회수</th>
+            <td>${article.hitCount}</td>
+          </tr>
+          <tr>
             <th>제목</th>
             <td>${article.title}</td>
           </tr>
@@ -41,10 +45,10 @@
     <div class="btns">
       <button class="btn btn-outline" type="button" onclick="history.back();">뒤로가기</button>
       <c:if test="${article.extra__actorCanModify}">
-        <a class="btn btn-outline" href="../article/modify?id=${article.id}">게시물 수정</a>
+        <a class="btn btn-outline" " href="../article/modify?id=${article.id}">게시물 수정</a>
       </c:if>
       <c:if test="${article.extra__actorCanDelete}">
-        <a class="btn btn-outline" onclick="if ( confirm('정말 삭제하시겠습니까?') == false) return false;"
+        <a class="btn btn-outline" " onclick="if ( confirm('정말 삭제하시겠습니까?') == false) return false;"
           href="../article/doDelete?id=${article.id}">게시물 삭제</a>
       </c:if>
     </div>
