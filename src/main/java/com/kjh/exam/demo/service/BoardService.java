@@ -14,7 +14,7 @@ import com.kjh.exam.demo.vo.ResultData;
 @Service
 public class BoardService {
 	private BoardRepository boardRepository;
-
+	
 	public BoardService(BoardRepository boardRepository) {
 		this.boardRepository = boardRepository;
 	}

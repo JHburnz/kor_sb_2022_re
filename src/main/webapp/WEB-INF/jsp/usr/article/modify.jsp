@@ -15,16 +15,28 @@
           <tr>
             <th>번호</th>
             <td>
-              <div>${article.id}</div>
+              <div class="badge badge-primary">${article.id}</div>
             </td>
           </tr>
           <tr>
             <th>작성날짜</th>
-            <td>${article.regDateForPrint}</td>
+            <td>${article.forPrintType2RegDate}</td>
           </tr>
           <tr>
             <th>수정날짜</th>
-            <td>${article.updateDateForPrint}</td>
+            <td>${article.forPrintType2UpdateDate}</td>
+          </tr>
+          <tr>
+            <th>조회</th>
+            <td>
+              <span class="text-blue-700">${article.hitCount}</span>
+            </td>
+          </tr>
+          <tr>
+            <th>수정날짜</th>
+            <td>
+              <span class="text-blue-700">${article.goodReactionPoint}</span>
+            </td>
           </tr>
           <tr>
             <th>작성자</th>
@@ -60,7 +72,7 @@
             href="../article/doDelete?id=${article.id}">게시물 삭제</a>
         </c:if>
       </div>
-      </from>
+    </form>
   </div>
 </section>
 

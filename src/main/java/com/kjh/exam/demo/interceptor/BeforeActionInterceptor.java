@@ -18,9 +18,6 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 		this.rq = rq;
 	}
 
-	@Autowired
-	private MemberService memberService;
-
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
 		rq.initOnBeforeActionInterceptor();

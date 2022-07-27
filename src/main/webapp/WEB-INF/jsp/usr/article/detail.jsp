@@ -3,6 +3,37 @@
 <c:set var="pageTitle" value="게시물 내용" />
 <%@ include file="../common/head.jspf"%>
 
+<script>
+	const params = {};
+	params.id = parseInt('${param.id}');
+</script>
+
+<script>
+	function ArticleDetail__increaseHitCout() {
+		const localStorageKey = 'article__' + params.id + '__viewDone';
+
+		if (localStorage.getItem(localStorageKey)) {
+			return;
+		}
+
+		localStorage.setItem(localStorageKey, true);
+
+		$.get('../article/doIncreaseHitCountRd', {
+			id : params.id,
+			ajaxMode : 'Y'
+		}, function(data) {
+			$('.article-detail__hit-count').empty().html(data.data1);
+		}, 'json');
+	}
+	$(function() {
+		// 실전코드
+		// ArticleDetail__increaseHitCout();
+
+		// 임시코드
+		setTimeout(ArticleDetail__increaseHitCout, 300)
+	})
+</script>
+
 <section class="mt-5">
   <div class="container mx-auto px-3">
     <div class="table-box-type-1">
@@ -17,11 +48,11 @@
           </tr>
           <tr>
             <th>작성날짜</th>
-            <td>${article.regDate.substring(2, 16)}</td>
+            <td>${article.forPrintType2RegDate}</td>
           </tr>
           <tr>
             <th>수정날짜</th>
-            <td>${article.updateDate.substring(2, 16)}</td>
+            <td>${article.forPrintType2UpdateDate}</td>
           </tr>
           <tr>
             <th>작성자</th>
@@ -29,7 +60,28 @@
           </tr>
           <tr>
             <th>조회수</th>
-            <td>${article.hitCount}</td>
+            <td>
+              <span class="text-blue-700 article-detail__hit-count">${article.hitCount}</span>
+            </td>
+          </tr>
+          <tr>
+            <th>추천</th>
+            <td>
+              <div class="flex items-center">
+                <span class="text-blue-700">${article.goodReactionPoint}</span>
+                <span>&nbsp;</span>
+
+                <c:if test="${actorCanMakeReactionPoint}">
+                  <a
+                    href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}"
+                    class="btn btn-outline"> 좋아요 👍 </a>
+                  <span>&nbsp;</span>
+                  <a
+                    href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}"
+                    class="btn btn-outline"> 싫어요 👎 </a>
+                </c:if>
+              </div>
+            </td>
           </tr>
           <tr>
             <th>제목</th>
