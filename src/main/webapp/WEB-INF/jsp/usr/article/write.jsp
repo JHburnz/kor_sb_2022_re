@@ -53,13 +53,13 @@
           <tr>
             <th>작성</th>
             <td>
-              <input type="submit" class="btn btn-outline" value="작성" />
-              <button type="button" class="btn btn-outline" onclick="history.back();">뒤로가기</button>
+              <input type="submit" class="btn btn-primary" value="작성" />
+              <button type="button" class="btn btn-outline btn-success" onclick="history.back();">뒤로가기</button>
             </td>
           </tr>
         </tbody>
       </table>
-      </from>
+    </form>
   </div>
 </section>
 

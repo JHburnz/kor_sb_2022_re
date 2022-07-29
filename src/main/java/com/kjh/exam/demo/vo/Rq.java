@@ -65,6 +65,10 @@ public class Rq {
 		}
 	}
 
+	public boolean isNotLogined() {
+		return !isLogined;
+	}
+
 	public void println(String str) {
 		print(str + "\n");
 	}

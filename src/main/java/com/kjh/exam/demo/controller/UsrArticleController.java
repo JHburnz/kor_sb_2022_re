@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kjh.exam.demo.service.ArticleService;
 import com.kjh.exam.demo.service.BoardService;
 import com.kjh.exam.demo.service.ReactionPointService;
+import com.kjh.exam.demo.service.ReplyService;
 import com.kjh.exam.demo.utill.Ut;
 import com.kjh.exam.demo.vo.Article;
 import com.kjh.exam.demo.vo.Board;
+import com.kjh.exam.demo.vo.Reply;
 import com.kjh.exam.demo.vo.ResultData;
 import com.kjh.exam.demo.vo.Rq;
 
@@ -23,12 +25,14 @@ public class UsrArticleController {
 	private BoardService boardService;
 	private Rq rq;
 	private ReactionPointService reactionPointService;
+	private ReplyService replyService;
 
 	public UsrArticleController(ArticleService articleService, BoardService boardService,
-			ReactionPointService reactionPointService, Rq rq) {
+			ReactionPointService reactionPointService, ReplyService replyService, Rq rq) {
 		this.articleService = articleService;
 		this.boardService = boardService;
 		this.reactionPointService = reactionPointService;
+		this.replyService = replyService;
 		this.rq = rq;
 	}
 
@@ -65,6 +69,10 @@ public class UsrArticleController {
 
 		model.addAttribute("article", article);
 
+		List<Reply> replies = replyService.getForPrintReplies(rq.getLoginedMemberId(), "article", id);
+		int repliesCount = replies.size();
+		model.addAttribute("repliesCount", repliesCount);
+
 		ResultData actorCanMakeReactionPointRd = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(),
 				"article", id);
 
@@ -74,9 +82,9 @@ public class UsrArticleController {
 			int sumReactionPointByeMemberId = (int) actorCanMakeReactionPointRd.getData1();
 
 			if (sumReactionPointByeMemberId > 0) {
-				model.addAttribute("actorCanCencelGoodReaction", true);
+				model.addAttribute("actorCanCancelGoodReaction", true);
 			} else {
-				model.addAttribute("actorCanCencelBadReaction", true);
+				model.addAttribute("actorCanCancelBadReaction", true);
 			}
 		}
 
