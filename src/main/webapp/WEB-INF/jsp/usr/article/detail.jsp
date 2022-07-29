@@ -71,14 +71,32 @@
                 <span class="text-blue-700">${article.goodReactionPoint}</span>
                 <span>&nbsp;</span>
 
-                <c:if test="${actorCanMakeReactionPoint}">
+                <c:if test="${actorCanMakeReaction}">
                   <a
                     href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}"
-                    class="btn btn-outline"> 좋아요 👍 </a>
+                    class="btn btn-xs  btn-primary btn-outline"> 좋아요 👍 </a>
                   <span>&nbsp;</span>
                   <a
                     href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}"
-                    class="btn btn-outline"> 싫어요 👎 </a>
+                    class="btn btn-xs  btn-secondary btn-outline"> 싫어요 👎 </a>
+                </c:if>
+
+                <c:if test="${actorCanCencelGoodReaction}">
+                  <a
+                    href="/usr/reactionPoint/doCencelGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}"
+                    class="btn btn-xs  btn-primary"> 좋아요 👍 </a>
+                  <span>&nbsp;</span>
+                  <a onclick="alert(this.title); return false;" href="#" title="먼저 좋아요를 취소해주세요."
+                    class="btn btn-xs  btn-secondary btn-outline"> 싫어요 👎 </a>
+                </c:if>
+
+                <c:if test="${actorCanCencelBadReaction}">
+                  <a onclick="alert(this.title); return false;" href="#" title="먼저 싫어요를 취소해주세요."
+                    class="btn btn-xs  btn-primary  btn-outline"> 좋아요 👍 </a>
+                  <span>&nbsp;</span>
+                  <a
+                    href="/usr/reactionPoint/doCencelBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}"
+                    class="btn btn-xs  btn-secondary"> 싫어요 👎 </a>
                 </c:if>
               </div>
             </td>
@@ -95,12 +113,12 @@
       </table>
     </div>
     <div class="btns">
-      <button class="btn btn-outline" type="button" onclick="history.back();">뒤로가기</button>
+      <button class="btn btn-link" type="button" onclick="history.back();">뒤로가기</button>
       <c:if test="${article.extra__actorCanModify}">
-        <a class="btn btn-outline" " href="../article/modify?id=${article.id}">게시물 수정</a>
+        <a class="btn btn-link" " href="../article/modify?id=${article.id}">게시물 수정</a>
       </c:if>
       <c:if test="${article.extra__actorCanDelete}">
-        <a class="btn btn-outline" " onclick="if ( confirm('정말 삭제하시겠습니까?') == false) return false;"
+        <a class="btn btn-link" " onclick="if ( confirm('정말 삭제하시겠습니까?') == false) return false;"
           href="../article/doDelete?id=${article.id}">게시물 삭제</a>
       </c:if>
     </div>
